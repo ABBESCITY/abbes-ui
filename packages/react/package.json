@@ -7,10 +7,21 @@
   },
   "author": "GWR",
   "license": "ISC",
+  "exports": {
+    "/button": "./src/components/button/index.ts"
+  },
+  "peerDependencies": {
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
+  },
   "dependencies": {
+    "@abbes-ui/token": "workspace: *",
     "@base-ui/react": "1.7.0"
   },
   "devDependencies": {
-    "react": "19.2.8"
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   }
 }

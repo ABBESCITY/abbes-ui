@@ -10,7 +10,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "explorer.sortOrder": "type",
   "eslint.workingDirectories": [
     {
       "mode": "auto"

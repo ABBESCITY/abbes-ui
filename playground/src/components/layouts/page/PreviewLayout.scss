@@ -1,0 +1,47 @@
+.preview-page {
+  display: block;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.section-heading h2 {
+  color: var(--text-strong);
+  font-size: 30px;
+  line-height: 1.15;
+  margin-block-start: 4px;
+}
+
+.preview-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  margin-block-start: 4rem;
+}
+
+.code-sample {
+  background: var(--code-bg);
+  border-radius: 8px;
+  color: var(--code-text);
+  margin: 24px 0 0;
+  overflow: auto;
+  padding: 20px;
+}
+
+.code-sample code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+}

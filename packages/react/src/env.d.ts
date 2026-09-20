@@ -9,3 +9,10 @@ declare module '*.modules.scss' {
 }
 
 declare module '*.scss';
+
+declare module '*.css' {
+  const content: string;
+  export default content;
+}
+
+declare module '@abbes-ui/token/css/components/button' {}

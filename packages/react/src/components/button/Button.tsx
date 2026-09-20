@@ -1,41 +1,46 @@
+import clsx from 'clsx';
+
+import { useMemo } from 'react';
 import { Button as BaseButton } from '@base-ui/react';
 
 import styles from './Button.module.scss';
+import '@abbes-ui/token/css/components/button';
 
+import type { ComponentProps } from 'react';
 import type { ButtonProps } from './Button.props';
+import type { ComponentSlot } from '../../types';
 
-function cx(...classNames: Array<string | false | undefined>) {
-  return classNames.filter(Boolean).join(' ');
+function renderSlot(slot: ComponentSlot | undefined, slotProps: ComponentProps<any>) {
+  if (typeof slot === 'function') {
+    return slot(slotProps);
+  }
+  return slot;
 }
 
 export function Button({
+  slots,
+  size = 'medium',
+  color = 'primary',
+  variant = 'solid',
+  disabled,
   children,
   className,
-  disabled,
-  loading,
-  size = 'medium',
-  slots,
-  type = 'button',
-  variant = 'solid',
   ...props
 }: ButtonProps) {
+  const variantClasses = useMemo(
+    () => [styles[`Button_Variant_${variant}`], styles[`Button_Size_${size}`]],
+    [size, color, variant],
+  );
+
   return (
     <BaseButton
-      className={cx(
-        styles.button,
-        styles[`size-${size}`],
-        styles[`variant-${variant}`],
-        loading && styles.loading,
-        className,
-      )}
-      data-loading={loading ? '' : undefined}
-      disabled={disabled || loading}
-      type={type}
+      className={clsx('AbbesButtonToken', styles.ButtonContainer, variantClasses, className)}
+      disabled={disabled}
       {...props}
     >
-      {loading ? <span className={styles.spinner} aria-hidden="true" /> : slots?.leftIcon}
-      <span className={styles.label}>{children}</span>
-      {slots?.rightIcon}
+      {renderSlot(slots?.leftIcon, { className: styles.Button_Slot_Left })}
+      <span className={styles.ButtonLabel}>{children}</span>
+      {renderSlot(slots?.rightIcon, { className: styles.Button_Slot_Right })}
     </BaseButton>
   );
 }

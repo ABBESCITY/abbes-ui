@@ -1,124 +1,67 @@
-.button {
-  --button-bg: #111827;
-  --button-border: #111827;
-  --button-fg: #ffffff;
-  --button-hover: #1f2937;
+@use "../../styles/mixin.scss"as mixin;
 
-  align-items: center;
-  background: var(--button-bg);
-  border: 1px solid var(--button-border);
-  border-radius: 6px;
-  color: var(--button-fg);
+
+// Structure
+.ButtonContainer {
+  @include mixin.flex((align-items: center, justify-content: center, gap: 8px, inline: true));
+  position: relative;
   cursor: pointer;
-  display: inline-flex;
   font: inherit;
-  font-size: 14px;
-  font-weight: 520;
-  gap: 8px;
-  justify-content: center;
   line-height: 1;
-  min-inline-size: 0;
   outline: none;
-  padding: 0 14px;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    color 160ms ease,
-    transform 120ms ease;
   user-select: none;
   white-space: nowrap;
-}
+  border: 1px solid var(--button-container-border-color);
+  border-radius: var(--button-container-radius);
+  background: var(--button-container-background-color);
 
-.button:hover:not(:disabled) {
-  background: var(--button-hover);
-}
-
-.button:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-.button:focus-visible {
-  box-shadow: 0 0 0 3px rgb(37 99 235 / 20%);
-}
-
-.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.56;
-}
-
-.label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.size-small {
-  block-size: 30px;
-  font-size: 13px;
-  padding-inline: 11px;
-}
-
-.size-medium {
-  block-size: 36px;
-}
-
-.size-large {
-  block-size: 44px;
-  font-size: 15px;
-  padding-inline: 18px;
-}
-
-.size-full {
-  block-size: 40px;
-  inline-size: 100%;
-}
-
-.variant-solid {
-  --button-bg: #111827;
-  --button-border: #111827;
-  --button-fg: #ffffff;
-  --button-hover: #374151;
-}
-
-.variant-soft {
-  --button-bg: #eef2ff;
-  --button-border: #dbe4ff;
-  --button-fg: #3730a3;
-  --button-hover: #e0e7ff;
-}
-
-.variant-outline {
-  --button-bg: #ffffff;
-  --button-border: #cbd5e1;
-  --button-fg: #1f2937;
-  --button-hover: #f8fafc;
-}
-
-.variant-plain {
-  --button-bg: #f1f5f9;
-  --button-border: #f1f5f9;
-  --button-fg: #1f2937;
-  --button-hover: #e2e8f0;
-}
-
-.variant-text {
-  --button-bg: transparent;
-  --button-border: transparent;
-  --button-fg: #2563eb;
-  --button-hover: rgb(37 99 235 / 8%);
-}
-
-.spinner {
-  animation: spin 800ms linear infinite;
-  block-size: 14px;
-  border: 2px solid currentColor;
-  border-block-start-color: transparent;
-  border-radius: 999px;
-  inline-size: 14px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+  &::after {
+    inset: 0;
+    content: "";
+    position: absolute;
   }
+
+  &[data-disabled] {
+    --button-content-text-color: color-mix(in srgb, red 38%, transparent);
+    --button-content-icon-color: color-mix(in srgb, red 38%, transparent);
+    --button-container-border-color: color-mix(in srgb, red 12%, transparent);
+    --button-container-background-color: color-mix(in srgb, red 12%, transparent);
+  }
+
+}
+
+.ButtonLabel {
+  color: var(--button-content-text-color);
+  font-size: var(--button-content-font-size);
+}
+
+.Button_Slot_Left,
+.Button_Slot_Right {
+  @include mixin.flex((justify-content: center, align-items: center));
+  color: var(--button-content-icon-color);
+  font-size: var(--button-content-icon-size);
+}
+
+
+// Variants
+.Button_Variant_Solid {
+  --button-content-text-color: var(--button-main-color-on-main);
+  --button-content-icon-color: var(--button-main-color-on-main);
+  --button-container-background-color: var(--button-main-color-main);
+}
+
+.Button_Variant_Plain {
+  --button-container-border-color: var(--button-main-color-main);
+}
+
+.Button_Variant_Outline {
+  --button-container-border-color: var(--button-main-color-main);
+}
+
+.Button_Variant_Soft {
+  --button-container-border-color: var(--button-main-color-main);
+}
+
+.Button_Variant_Text {
+  --button-container-border-color: var(--button-main-color-main);
 }

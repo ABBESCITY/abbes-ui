@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@abbes-ui/token": "workspace: *",
-    "@base-ui/react": "1.7.0"
+    "@base-ui/react": "1.7.0",
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

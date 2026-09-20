@@ -43,7 +43,6 @@ export default function PreviewPage() {
         <span className="preview-label">States</span>
         <div className="button-grid">
           <Button>Default</Button>
-          <Button loading>Loading</Button>
           <Button disabled>Disabled</Button>
           <Button slots={{ leftIcon: <span aria-hidden="true">+</span> }}>With icon</Button>
         </div>

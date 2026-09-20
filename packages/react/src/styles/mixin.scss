@@ -1,0 +1,33 @@
+@use "sass:map";
+
+@mixin flex($config: ()) {
+  $direction: map.get($config, direction);
+  $justify-content: map.get($config, justify-content);
+  $align-items: map.get($config, align-items);
+  $gap: map.get($config, gap);
+  $inline: map.get($config, inline);
+
+  @if $inline {
+    display: inline-flex;
+  }
+
+  @else {
+    display: flex;
+  }
+
+  @if $direction {
+    flex-direction: $direction;
+  }
+
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+
+  @if $align-items {
+    align-items: $align-items;
+  }
+
+  @if $gap {
+    gap: $gap;
+  }
+}

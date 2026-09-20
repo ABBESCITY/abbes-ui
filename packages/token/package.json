@@ -2,12 +2,31 @@
   "name": "@abbes-ui/token",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "tsx scripts/generate.ts",
+    "watch": "tsx scripts/watcher.ts",
+    "dev": "pnpm run watch"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts"
+    },
+    "./css": {
+      "style": "./src/generate/css/index.css",
+      "default": "./src/generate/css/index.css"
+    },
+    "./css/components/button": {
+      "style": "./src/generate/css/components/button.css",
+      "default": "./src/generate/css/components/button.css"
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.33.4"
+  "packageManager": "pnpm@10.33.4",
+  "devDependencies": {
+    "@types/node": "^24.13.4",
+    "chokidar": "5.0.0",
+    "tsx": "4.23.13"
+  }
 }

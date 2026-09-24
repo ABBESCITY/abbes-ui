@@ -8,9 +8,7 @@
     "dev": "pnpm run watch"
   },
   "exports": {
-    ".": {
-      "types": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
     "./css": {
       "style": "./src/generate/css/index.css",
       "default": "./src/generate/css/index.css"

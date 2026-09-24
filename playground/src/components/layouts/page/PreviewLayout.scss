@@ -24,21 +24,6 @@
   margin-block-start: 4rem;
 }
 
-.code-sample {
-  background: var(--code-bg);
-  border-radius: 8px;
-  color: var(--code-text);
-  margin: 24px 0 0;
-  overflow: auto;
-  padding: 20px;
-}
-
-.code-sample code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
 @media (max-width: 760px) {
   .section-heading {
     align-items: start;

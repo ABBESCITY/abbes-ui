@@ -15,7 +15,7 @@ function capitalize(s: string) {
 
 export default function PreviewPage() {
   return (
-    <PreviewLayout title="Button">
+    <PreviewLayout title="Preview">
       <div className="preview-row">
         <span className="preview-label">Variants</span>
         <div className="button-grid">

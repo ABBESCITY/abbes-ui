@@ -1,28 +1,27 @@
 import { Button } from '@abbes-ui/react';
+
 import type { ButtonProps } from '@abbes-ui/react';
 
 import { PreviewLayout } from '@/components/layouts/page/PreviewLayout';
 
 import './PreviewPage.scss';
 
-const sizes: NonNullable<ButtonProps['size']>[] = ['small', 'medium', 'large', 'full'];
-const variants: NonNullable<ButtonProps['variant']>[] = ['solid', 'soft', 'outline', 'plain', 'text'];
+const sizes: NonNullable<ButtonProps['size']>[] = ['small', 'medium', 'large'];
+const variants: NonNullable<ButtonProps['variant']>[] = ['fill', 'elevated', 'outline', 'tonal', 'text'];
 
-const code = `import { Button } from '@abbes-ui/react';
-
-export function Example() {
-  return <Button variant="solid">Button</Button>;
-}`;
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 export default function PreviewPage() {
   return (
-    <PreviewLayout code={code} title="Button">
+    <PreviewLayout title="Button">
       <div className="preview-row">
         <span className="preview-label">Variants</span>
         <div className="button-grid">
           {variants.map((variant) => (
-            <Button key={variant} variant={variant}>
-              {variant}
+            <Button key={variant} variant={variant} style={{ minWidth: '96px' }}>
+              {capitalize(variant)}
             </Button>
           ))}
         </div>
@@ -32,7 +31,7 @@ export default function PreviewPage() {
         <span className="preview-label">Sizes</span>
         <div className="button-grid">
           {sizes.map((size) => (
-            <Button key={size} size={size} variant="soft">
+            <Button key={size} size={size} variant="elevated">
               {size}
             </Button>
           ))}
@@ -40,9 +39,18 @@ export default function PreviewPage() {
       </div>
 
       <div className="preview-row">
+        <span className="preview-label">Shape</span>
+        <div className="button-grid">
+          <Button shape="square">Square</Button>
+          <Button shape="circle">C</Button>
+          <Button shape="round">Round</Button>
+        </div>
+      </div>
+
+      <div className="preview-row">
         <span className="preview-label">States</span>
         <div className="button-grid">
-          <Button>Default</Button>
+          <Button color="brand">Default</Button>
           <Button disabled>Disabled</Button>
           <Button slots={{ leftIcon: <span aria-hidden="true">+</span> }}>With icon</Button>
         </div>

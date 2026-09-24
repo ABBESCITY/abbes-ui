@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import { useMemo } from 'react';
 import { Button as BaseButton } from '@base-ui/react';
 
-import styles from './Button.module.scss';
-import '@abbes-ui/token/css/components/button';
+import { CompTokenClass } from './Button.token.css';
+import { ButtonContainer, ButtonLabel, Button_Slot } from './Button.style.css';
 
 import type { ComponentProps } from 'react';
 import type { ButtonProps } from './Button.props';
@@ -21,26 +21,25 @@ export function Button({
   slots,
   size = 'medium',
   color = 'primary',
-  variant = 'solid',
+  shape = 'square',
+  variant = 'fill',
   disabled,
   children,
   className,
   ...props
 }: ButtonProps) {
-  const variantClasses = useMemo(
-    () => [styles[`Button_Variant_${variant}`], styles[`Button_Size_${size}`]],
-    [size, color, variant],
-  );
+  const componentClass = useMemo(() => ButtonContainer({ size, variant, shape }), [size, variant, ButtonContainer]);
 
   return (
     <BaseButton
-      className={clsx('AbbesButtonToken', styles.ButtonContainer, variantClasses, className)}
+      className={clsx(CompTokenClass, componentClass, className)}
       disabled={disabled}
+      data-color={color}
       {...props}
     >
-      {renderSlot(slots?.leftIcon, { className: styles.Button_Slot_Left })}
-      <span className={styles.ButtonLabel}>{children}</span>
-      {renderSlot(slots?.rightIcon, { className: styles.Button_Slot_Right })}
+      {renderSlot(slots?.leftIcon, { className: Button_Slot })}
+      <span className={ButtonLabel}>{children}</span>
+      {renderSlot(slots?.rightIcon, { className: Button_Slot })}
     </BaseButton>
   );
 }

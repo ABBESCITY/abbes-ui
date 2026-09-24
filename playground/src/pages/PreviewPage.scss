@@ -5,7 +5,7 @@
   padding: 24px;
 }
 
-.preview-row + .preview-row {
+.preview-row+.preview-row {
   border-block-start: 1px solid var(--border);
 }
 
@@ -17,8 +17,9 @@
 }
 
 .button-grid {
-  align-items: center;
   display: grid;
+  align-items: center;
+  justify-items: center;
   gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
 }

@@ -4,7 +4,8 @@ import { cn } from 'cn';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { componentsNav, isNavItemActive } from '@/lib/docs-nav';
+import { componentsNav } from '@/lib/docs-nav';
+import { isNavItemActive } from '@/lib/utils';
 
 type ComponentsSidebarProps = {
   className?: string;

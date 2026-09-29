@@ -3,7 +3,7 @@
 import { cn } from 'cn';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDownIcon, LayoutGridIcon } from 'lucide-react';
+import { ChevronDownIcon, PaletteIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -14,39 +14,40 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { componentsNav, componentsNavItems, isNavItemActive } from '@/lib/docs-nav';
+import { themeNav } from '@/lib/docs-nav';
+import { getNavItems, isNavEntryActive } from '@/lib/utils';
 
-type ComponentsMobileNavProps = {
+type ThemeMobileNavProps = {
   className?: string;
 };
 
-export function ComponentsMobileNav({ className }: ComponentsMobileNavProps) {
+export function ThemeMobileNav({ className }: ThemeMobileNavProps) {
   const pathname = usePathname();
 
-  const activeItem = componentsNavItems.find((item) => isNavItemActive(pathname, item.href));
+  const activeItem = getNavItems(themeNav).find((item) => isNavEntryActive(pathname, item.href));
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
-          <Button variant="outline" className={cn('w-full justify-between', className)} aria-label="Browse components" />
+          <Button variant="outline" className={cn('w-full justify-between', className)} aria-label="Browse theme" />
         }
       >
         <span className="flex items-center gap-2">
-          <LayoutGridIcon aria-hidden className="size-4 text-muted-foreground" />
-          {activeItem?.title ?? 'Browse components'}
+          <PaletteIcon aria-hidden className="size-4 text-muted-foreground" />
+          {activeItem?.title ?? 'Browse theme'}
         </span>
         <ChevronDownIcon aria-hidden className="size-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-(--anchor-width)">
-        {componentsNav.map((section) => (
+        {themeNav.map((section) => (
           <DropdownMenuGroup key={section.title}>
             <DropdownMenuLabel>{section.title}</DropdownMenuLabel>
             {section.items.map((item) => (
               <DropdownMenuItem
                 key={item.href}
                 render={<Link href={item.href} />}
-                aria-current={isNavItemActive(pathname, item.href) ? 'page' : undefined}
+                aria-current={isNavEntryActive(pathname, item.href) ? 'page' : undefined}
                 className="aria-[current=page]:bg-accent aria-[current=page]:text-accent-foreground"
               >
                 {item.title}

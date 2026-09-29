@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
-import { SiteHeader } from '@/components/layout/root/site-header';
+import { SiteHeader } from '@/components/layout/root/header/site-header';
 import { siteConfig } from '@/lib/site-config';
 
 import '@/styles/globals.css';

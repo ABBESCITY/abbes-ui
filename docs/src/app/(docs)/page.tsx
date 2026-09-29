@@ -15,11 +15,14 @@ import Link from 'next/link';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardDescription, CardHeader } from '@/components/ui/card';
-import { docsNavItems, type DocsNavItem } from '@/lib/docs-nav';
 import { siteConfig } from '@/lib/site-config';
+import { docsNav } from '@/lib/docs-nav';
+import { getNavItems } from '@/lib/utils';
+import { Card, CardDescription, CardHeader } from '@/components/ui/card';
 
-const navIcons: Record<NonNullable<DocsNavItem['icon']>, LucideIcon> = {
+import type { NavIcon } from '@/types';
+
+const navIcons: Record<NavIcon, LucideIcon> = {
   theme: PaletteIcon,
   components: ComponentIcon,
   utils: WrenchIcon,
@@ -145,7 +148,7 @@ export default function DocsHomePage() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {docsNavItems.map((item) => {
+          {getNavItems(docsNav).map((item) => {
             const Icon = navIcons[item.icon ?? 'components'];
 
             return (

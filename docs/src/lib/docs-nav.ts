@@ -1,28 +1,6 @@
-export function isNavItemActive(pathname: string, href: string): boolean {
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
+import type { NavSection } from '@/types';
 
-export function isNavSectionActive(pathname: string, href: string): boolean {
-  const root = href.split('/').filter(Boolean)[0];
-
-  if (!root) return pathname === href;
-
-  return pathname === `/${root}` || pathname.startsWith(`/${root}/`);
-}
-
-export type DocsNavItem = {
-  title: string;
-  href: string;
-  description?: string;
-  icon?: 'theme' | 'components' | 'utils' | 'guide';
-};
-
-export type DocsNavSection = {
-  title: string;
-  items: DocsNavItem[];
-};
-
-export const docsNav: DocsNavSection[] = [
+export const docsNav: NavSection[] = [
   {
     title: 'React',
     items: [
@@ -41,27 +19,7 @@ export const docsNav: DocsNavSection[] = [
     ],
   },
 ];
-
-export const docsNavItems: DocsNavItem[] = docsNav.flatMap((section) => section.items);
-
-export type DocsSearchItem = DocsNavItem & { section: string };
-
-export const docsSearchItems: DocsSearchItem[] = docsNav.flatMap((section) =>
-  section.items.map((item) => ({ ...item, section: section.title })),
-);
-
-export type ComponentsNavItem = {
-  title: string;
-  href: string;
-  description: string;
-};
-
-export type ComponentsNavSection = {
-  title: string;
-  items: ComponentsNavItem[];
-};
-
-export const componentsNav: ComponentsNavSection[] = [
+export const componentsNav: NavSection[] = [
   {
     title: 'Overview',
     items: [
@@ -88,5 +46,40 @@ export const componentsNav: ComponentsNavSection[] = [
     ],
   },
 ];
-
-export const componentsNavItems: ComponentsNavItem[] = componentsNav.flatMap((section) => section.items);
+export const themeNav: NavSection[] = [
+  {
+    title: 'Overview',
+    items: [
+      {
+        title: 'Introduction',
+        href: '/theme',
+        description: 'How tokens, themes and the theme provider fit together.',
+      },
+      {
+        title: 'Design kit',
+        href: '/theme/design-kit',
+        description: 'The shared foundations, assets and rules behind every component.',
+      },
+    ],
+  },
+  {
+    title: 'Foundations',
+    items: [
+      {
+        title: 'Color',
+        href: '/theme/color',
+        description: 'Color roles, palettes and the CSS variable mapping.',
+      },
+      {
+        title: 'Space',
+        href: '/theme/space',
+        description: 'The spacing scale, radius and sizing utilities.',
+      },
+      {
+        title: 'Typography',
+        href: '/theme/typography',
+        description: 'Font families, type scale and heading styles.',
+      },
+    ],
+  },
+];

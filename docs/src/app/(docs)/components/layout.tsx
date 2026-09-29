@@ -1,5 +1,5 @@
-import { ComponentsMobileNav } from '@/components/layout/docs/components-mobile-nav';
-import { ComponentsSidebar } from '@/components/layout/docs/components-sidebar';
+import { ComponentsMobileNav } from '@/components/layout/docs/components/components-mobile-nav';
+import { ComponentsSidebar } from '@/components/layout/docs/components/components-sidebar';
 
 import './layout.css';
 

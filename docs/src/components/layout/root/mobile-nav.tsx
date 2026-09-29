@@ -14,7 +14,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { docsNav, isNavSectionActive } from '@/lib/docs-nav';
+import { docsNav } from '@/lib/docs-nav';
+import { isNavSectionActive } from '@/lib/utils';
 
 type MobileNavProps = {
   className?: string;

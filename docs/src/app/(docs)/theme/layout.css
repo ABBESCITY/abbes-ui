@@ -1,0 +1,7 @@
+[data-slot='theme-docs-layout'] {
+  isolation: isolate;
+}
+
+[data-slot='theme-docs-layout'] [id] {
+  scroll-margin-top: 4.5rem;
+}

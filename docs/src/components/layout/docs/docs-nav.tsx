@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from 'cn';
-import { docsNavItems, isNavSectionActive } from '@/lib/docs-nav';
+import { docsNav } from '@/lib/docs-nav';
+import { getNavItems, isNavSectionActive } from '@/lib/utils';
 
 type DocsNavProps = {
   className?: string;
@@ -15,9 +16,8 @@ export function DocsNav({ className }: DocsNavProps) {
 
   return (
     <nav aria-label="Documentation" data-slot="docs-nav" className={cn('flex items-center gap-1', className)}>
-      {docsNavItems.map((item) => {
+      {getNavItems(docsNav).map((item) => {
         const isActive = isNavSectionActive(pathname, item.href);
-
         return (
           <Link
             key={item.href}

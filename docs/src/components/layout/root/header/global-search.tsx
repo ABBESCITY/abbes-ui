@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Kbd } from '@/components/ui/kbd';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { docsNav, docsSearchItems } from '@/lib/docs-nav';
+import { docsNav } from '@/lib/docs-nav';
 
 type GlobalSearchContextValue = {
   open: () => void;
@@ -68,7 +68,7 @@ function GlobalSearchDialog({ open, onOpenChange }: { open: boolean; onOpenChang
           </CommandList>
         </Command>
         <div className="flex items-center justify-between gap-4 border-t px-3 py-2 text-xs text-muted-foreground">
-          <span className="truncate">{docsSearchItems.length} pages indexed</span>
+          {/* <span className="truncate">{docsSearchItems.length} pages indexed</span> */}
           <span className="flex shrink-0 items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd>↑</Kbd>

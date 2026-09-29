@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
 import { DocsNav } from '@/components/layout/docs/docs-nav';
-import { GlobalSearchProvider, SearchTrigger } from '@/components/layout/root/global-search';
-import { LocaleSwitcher } from '@/components/layout/root/locale-switcher';
-import { SiteLogo } from '@/components/layout/root/site-logo';
+import { GlobalSearchProvider, SearchTrigger } from '@/components/layout/root/header/global-search';
+import { LocaleSwitcher } from '@/components/layout/root/header/locale-switcher';
+import { SiteLogo } from '@/components/layout/root/header/site-logo';
 import { MobileNav } from '@/components/layout/root/mobile-nav';
-import { ThemeSwitch, ThemeToggle } from '@/components/layout/root/theme-toggle';
+import { ThemeSwitch, ThemeToggle } from '@/components/layout/root/header/theme-toggle';
 import { siteConfig } from '@/lib/site-config';
 
 export function SiteHeader() {

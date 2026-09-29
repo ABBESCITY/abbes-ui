@@ -1,0 +1,25 @@
+@layer base {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklch, var(--primary) 18%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+[data-slot='root-layout'] {
+  isolation: isolate;
+}
+
+[data-slot='root-layout'] [id] {
+  scroll-margin-top: 4.5rem;
+}

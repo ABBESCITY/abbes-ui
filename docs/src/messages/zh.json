@@ -1,0 +1,267 @@
+{
+  "site": {
+    "ariaLabel": {
+      "home": "Abbes UI",
+      "nav": "文档",
+      "search": "搜索文档",
+      "theme": "主题",
+      "language": "语言",
+      "menu": "导航",
+      "components": "组件",
+      "browseComponents": "浏览组件",
+      "browseTheme": "浏览主题"
+    },
+    "search": {
+      "title": "搜索文档",
+      "description": "按页面标题或描述搜索 Abbes UI 文档。",
+      "placeholder": "搜索文档...",
+      "empty": "未找到与“{query}”相关的结果。",
+      "indexed": "已收录 {count} 个页面",
+      "toNavigate": "切换",
+      "toOpen": "打开"
+    },
+    "theme": {
+      "label": "主题",
+      "items": {
+        "light": "浅色",
+        "dark": "深色",
+        "system": "跟随系统"
+      }
+    },
+    "language": {
+      "label": "语言",
+      "items": {
+        "en": "English",
+        "zh": "简体中文"
+      },
+      "short": {
+        "en": "EN",
+        "zh": "ZH"
+      }
+    },
+    "docs": {
+      "title": "React 文档",
+      "children": {
+        "theme": {
+          "title": "主题",
+          "description": "设计令牌、主题提供器与颜色模式"
+        },
+        "components": {
+          "title": "组件",
+          "description": "组件 API、属性与示例"
+        }
+      }
+    }
+  },
+  "docs": {
+    "components": {
+      "title": "组件",
+      "children": {
+        "overview": {
+          "title": "概览",
+          "children": {
+            "quickStart": {
+              "title": "快速开始",
+              "description": "安装依赖、加载令牌并渲染第一个组件。"
+            }
+          }
+        },
+        "general": {
+          "title": "通用",
+          "children": {
+            "button": {
+              "title": "按钮",
+              "description": "用于操作与表单提交的按钮，基于令牌驱动变体。"
+            },
+            "tag": {
+              "title": "标签",
+              "description": "用于状态、元数据与分类的紧凑标签。"
+            }
+          }
+        }
+      },
+      "pages": {
+        "button": {
+          "badge": "React",
+          "title": "按钮",
+          "description": "用于操作与表单提交的按钮，基于令牌驱动变体。每个按钮都提供类型化属性与 cva recipe，无需 fork 即可重新设计样式。",
+          "browse": "浏览变体",
+          "cards": {
+            "variants": {
+              "title": "变体",
+              "description": "默认、描边、次级与危险样式，全部由主题令牌驱动。"
+            },
+            "sizes": {
+              "title": "尺寸",
+              "description": "从 xs 到 lg，每种尺寸都与间距阶梯保持一致。"
+            }
+          }
+        },
+        "tag": {
+          "badge": "React",
+          "title": "标签",
+          "description": "用于状态、元数据与分类的紧凑标签。标签的颜色来自 Abbes UI 主题令牌。",
+          "browse": "浏览变体",
+          "cards": {
+            "status": {
+              "title": "状态",
+              "description": "用标签在记录或操作旁展示状态。"
+            },
+            "metadata": {
+              "title": "元数据",
+              "description": "用简短、低强调的标签归类相关记录。"
+            }
+          }
+        },
+        "quickStart": {
+          "badge": "概览",
+          "title": "快速开始",
+          "description": "安装依赖包、加载令牌样式表并渲染第一个组件。四个步骤，无需配置文件。",
+          "steps": {
+            "install": {
+              "title": "安装依赖包",
+              "description": "组件与令牌分开发布，因此两个包都需要安装。"
+            },
+            "stylesheet": {
+              "title": "加载令牌样式表",
+              "description": "生成的 CSS 会在 :root 上把每个设计令牌定义为自定义属性。"
+            },
+            "provider": {
+              "title": "添加主题提供器",
+              "description": "从默认令牌契约出发，只覆盖你关心的值。"
+            },
+            "render": {
+              "title": "渲染一个组件",
+              "description": "每个组件都为尺寸、颜色、形状与变体提供类型化属性。"
+            }
+          },
+          "nextSteps": {
+            "title": "下一步",
+            "description": "深入了解组件 API 与令牌管线。"
+          },
+          "links": {
+            "button": {
+              "title": "按钮",
+              "description": "操作与表单提交按钮的属性、变体与插槽。"
+            },
+            "tag": {
+              "title": "标签",
+              "description": "用于状态、元数据与分类的紧凑标签。"
+            }
+          }
+        }
+      }
+    },
+    "theme": {
+      "title": "主题",
+      "children": {
+        "overview": {
+          "title": "概览",
+          "children": {
+            "introduction": {
+              "title": "介绍",
+              "description": "令牌、主题与主题提供器是如何协同工作的。"
+            },
+            "designKit": {
+              "title": "设计套件",
+              "description": "支撑每个组件的共享基础、素材与规范。"
+            }
+          }
+        },
+        "foundations": {
+          "title": "基础",
+          "children": {
+            "color": {
+              "title": "颜色",
+              "description": "颜色语义、调色板与 CSS 变量映射。"
+            },
+            "space": {
+              "title": "间距",
+              "description": "间距、圆角与尺寸工具类。"
+            },
+            "typography": {
+              "title": "排版",
+              "description": "字体族、字号阶梯与标题样式。"
+            }
+          }
+        }
+      },
+      "pages": {
+        "introduction": {
+          "badge": "主题",
+          "title": "介绍",
+          "description": "令牌是颜色、排版与间距的唯一事实来源。主题提供器将它们映射为 CSS 变量，让每个组件都从同一处读取。",
+          "whatsInside": "包含内容",
+          "steps": {
+            "define": {
+              "title": "定义你的令牌",
+              "description": "只需编写一次颜色、间距与排版令牌，下游一切都从中读取。"
+            },
+            "wrap": {
+              "title": "用 ThemeProvider 包裹应用",
+              "description": "提供器将令牌映射为 CSS 变量，并管理当前颜色模式。"
+            },
+            "compose": {
+              "title": "组合组件",
+              "description": "基础组件直接读取变量，因此重新设计样式无需 fork。"
+            }
+          }
+        }
+      },
+      "comingSoon": {
+        "title": "即将推出",
+        "description": "该页面尚未撰写。"
+      }
+    }
+  },
+  "home": {
+    "badge": "{name} 文档",
+    "title": "用 <name></name> 构建精美的界面",
+    "getStarted": "快速开始",
+    "viewOnGitHub": "在 GitHub 上查看",
+    "starOnGitHub": "在 GitHub 上收藏",
+    "explore": {
+      "title": "浏览文档",
+      "description": "了解令牌、主题提供器与组件 API 如何协同工作。",
+      "browse": "浏览组件"
+    },
+    "features": {
+      "title": "为什么选择 {name}",
+      "description": "为需要设计一致性、又不想每个页面都定制组件的团队打造的轻量工具链。",
+      "items": {
+        "theming": {
+          "title": "令牌驱动的主题",
+          "description": "设计令牌驱动颜色、间距与排版。运行时切换主题，无需重新构建样式，也无需 fork 组件。"
+        },
+        "composable": {
+          "title": "默认可组合",
+          "description": "基础组件用于组合而非配置。每个 recipe 都可以通过 CSS 变量而非属性来覆盖。"
+        },
+        "typed": {
+          "title": "类型安全的 API",
+          "description": "严格的 TypeScript 属性与生成的样式 recipe，让每次集成都稳定可预测。"
+        },
+        "accessible": {
+          "title": "无障碍基础",
+          "description": "基于成熟的 Base UI 基础组件构建，焦点管理、键盘支持与 ARIA 语义都已处理好。"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备好开始构建了吗？",
+      "description": "安装依赖包，用主题提供器包裹应用，几分钟内完成第一个组件。"
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "页面不存在",
+    "description": "我们找不到该页面，它可能已被移动或从未存在。",
+    "backHome": "返回首页",
+    "readDocs": "阅读文档",
+    "stillStuck": "还没解决？返回 {name}，或按搜索快捷键进行搜索。"
+  },
+  "metadata": {
+    "defaultTitle": "{name} 文档",
+    "titleTemplate": "%s | {name}"
+  }
+}

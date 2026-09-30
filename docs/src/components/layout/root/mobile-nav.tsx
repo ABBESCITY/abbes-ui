@@ -1,21 +1,19 @@
 'use client';
 
-import * as React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { MenuIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
+import { useLocalNav } from '@/hooks/useLocalNav';
+import { Link, usePathname } from '@/lib/i18n/navigation';
+import { getNavItems, isNavSectionActive } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuHeading,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { docsNav } from '@/lib/docs-nav';
-import { isNavSectionActive } from '@/lib/utils';
 
 type MobileNavProps = {
   className?: string;
@@ -23,31 +21,30 @@ type MobileNavProps = {
 
 export function MobileNav({ className }: MobileNavProps) {
   const pathname = usePathname();
+  const t = useTranslations('site');
+  const nav = getNavItems(useLocalNav('site.docs'));
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="ghost" size="icon-sm" className={className} aria-label="Navigation" />}
+        render={<Button variant="ghost" size="icon-sm" className={className} aria-label={t('ariaLabel.menu')} />}
       >
         <MenuIcon />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        {docsNav.map((section, index) => (
-          <React.Fragment key={section.title}>
-            {index > 0 ? <DropdownMenuSeparator /> : null}
-            <DropdownMenuLabel>{section.title}</DropdownMenuLabel>
-            {section.items.map((item) => (
-              <DropdownMenuItem
-                key={item.href}
-                render={<Link href={item.href} />}
-                aria-current={isNavSectionActive(pathname, item.href) ? 'page' : undefined}
-                className="aria-[current=page]:bg-accent aria-[current=page]:text-accent-foreground"
-              >
-                {item.title}
-              </DropdownMenuItem>
-            ))}
-          </React.Fragment>
-        ))}
+        <DropdownMenuHeading>{t('docs.title')}</DropdownMenuHeading>
+        {nav.map((item) =>
+          item.href ? (
+            <DropdownMenuItem
+              key={item.key}
+              render={<Link href={item.href} />}
+              aria-current={isNavSectionActive(pathname, item.href) ? 'page' : undefined}
+              className="aria-[current=page]:bg-accent aria-[current=page]:text-accent-foreground"
+            >
+              {item.title}
+            </DropdownMenuItem>
+          ) : null,
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

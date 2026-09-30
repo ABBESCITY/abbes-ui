@@ -2,14 +2,15 @@
 
 import * as React from 'react';
 import { useTheme } from 'next-themes';
-import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { MonitorIcon, MoonIcon, SunIcon, type LucideIcon } from 'lucide-react';
 import { cn } from 'cn';
 
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
+  DropdownMenuHeading,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -17,10 +18,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const themes = [
-  { value: 'light', label: 'Light', icon: SunIcon },
-  { value: 'dark', label: 'Dark', icon: MoonIcon },
-  { value: 'system', label: 'System', icon: MonitorIcon },
-] as const;
+  { value: 'light', icon: SunIcon },
+  { value: 'dark', icon: MoonIcon },
+  { value: 'system', icon: MonitorIcon },
+] as const satisfies { value: 'light' | 'dark' | 'system'; icon: LucideIcon }[];
 
 const subscribe = () => () => {};
 
@@ -46,22 +47,25 @@ type ThemeToggleProps = {
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
   const { setTheme, value } = useResolvedTheme();
+  const t = useTranslations('site.theme');
   const active = themes.find((item) => item.value === value);
   const Icon = active?.icon ?? MonitorIcon;
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="icon-sm" className={className} aria-label="Theme" />}>
+      <DropdownMenuTrigger
+        render={<Button variant="ghost" size="icon-sm" className={className} aria-label={t('label')} />}
+      >
         <Icon />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36">
-        <DropdownMenuLabel>Theme</DropdownMenuLabel>
+        <DropdownMenuHeading>{t('label')}</DropdownMenuHeading>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={value} onValueChange={setTheme}>
           {themes.map((item) => (
             <DropdownMenuRadioItem key={item.value} value={item.value}>
               <item.icon />
-              {item.label}
+              {t(`items.${item.value}`)}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>
@@ -76,16 +80,18 @@ type ThemeSwitchProps = {
 
 export function ThemeSwitch({ className }: ThemeSwitchProps) {
   const { setTheme, value } = useResolvedTheme();
+  const t = useTranslations('site.theme');
 
   return (
     <div
       role="radiogroup"
-      aria-label="Theme"
+      aria-label={t('label')}
       data-slot="theme-switch"
       className={cn('inline-flex items-center gap-0.5 rounded-lg bg-muted p-0.5', className)}
     >
       {themes.map((item) => {
         const selected = value === item.value;
+        const label = t(`items.${item.value}`);
 
         return (
           <Button
@@ -95,8 +101,8 @@ export function ThemeSwitch({ className }: ThemeSwitchProps) {
             variant="ghost"
             size="icon-sm"
             aria-checked={selected}
-            aria-label={item.label}
-            title={item.label}
+            aria-label={label}
+            title={label}
             onClick={() => setTheme(item.value)}
             className={cn(
               'text-muted-foreground hover:text-foreground',

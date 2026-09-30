@@ -1,15 +1,17 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { CornerDownLeftIcon, FileTextIcon, SearchIcon } from 'lucide-react';
 
 import { cn } from 'cn';
+import { getNavItems } from '@/lib/utils';
+import { useLocalNav } from '@/hooks/useLocalNav';
+import { useRouter } from '@/lib/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { Kbd } from '@/components/ui/kbd';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { docsNav } from '@/lib/docs-nav';
 
 type GlobalSearchContextValue = {
   open: () => void;
@@ -29,32 +31,34 @@ function useGlobalSearch() {
 
 function GlobalSearchDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const router = useRouter();
+  const nav = getNavItems(useLocalNav('site.docs'));
+  const t = useTranslations('site');
   const [query, setQuery] = React.useState('');
 
-  function handleSelect(href: string) {
+  function handleSelect(target: string) {
     onOpenChange(false);
     setQuery('');
-    router.push(href);
+    router.push(target);
   }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogHeader className="sr-only">
-        <DialogTitle>Search documentation</DialogTitle>
-        <DialogDescription>Search the Abbes UI documentation by page title or description.</DialogDescription>
+        <DialogTitle>{t('search.title')}</DialogTitle>
+        <DialogDescription>{t('search.description')}</DialogDescription>
       </DialogHeader>
       <DialogContent showCloseButton={false} className="top-1/4 translate-y-0 gap-0 overflow-hidden p-0 sm:max-w-xl">
-        <Command shouldFilter label="Documentation">
-          <CommandInput value={query} onValueChange={setQuery} placeholder="Search documentation..." />
+        <Command shouldFilter label={t('ariaLabel.nav')}>
+          <CommandInput value={query} onValueChange={setQuery} placeholder={t('search.placeholder')} />
           <CommandList className="max-h-80">
-            <CommandEmpty className="text-muted-foreground">No results found for &ldquo;{query}&rdquo;.</CommandEmpty>
-            {docsNav.map((section) => (
-              <CommandGroup key={section.title} heading={section.title}>
-                {section.items.map((item) => (
+            <CommandEmpty className="text-muted-foreground">{t('search.empty', { query })}</CommandEmpty>
+            {nav.map((item) =>
+              item.href ? (
+                <CommandGroup key={item.key} heading={t('docs.title')}>
                   <CommandItem
-                    key={item.href}
+                    key={item.key}
                     value={`${item.title} ${item.description ?? ''}`}
-                    onSelect={() => handleSelect(item.href)}
+                    onSelect={() => handleSelect(item.href as string)}
                   >
                     <FileTextIcon className="size-4 text-muted-foreground" />
                     <span className="truncate">{item.title}</span>
@@ -62,24 +66,24 @@ function GlobalSearchDialog({ open, onOpenChange }: { open: boolean; onOpenChang
                       <span className="ml-auto truncate text-xs text-muted-foreground">{item.description}</span>
                     ) : null}
                   </CommandItem>
-                ))}
-              </CommandGroup>
-            ))}
+                </CommandGroup>
+              ) : null,
+            )}
           </CommandList>
         </Command>
         <div className="flex items-center justify-between gap-4 border-t px-3 py-2 text-xs text-muted-foreground">
-          {/* <span className="truncate">{docsSearchItems.length} pages indexed</span> */}
+          <span className="truncate">{t('search.indexed', { count: nav.length })}</span>
           <span className="flex shrink-0 items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd>↑</Kbd>
               <Kbd>↓</Kbd>
-              to navigate
+              {t('search.toNavigate')}
             </span>
             <span className="flex items-center gap-1">
               <Kbd>
                 <CornerDownLeftIcon />
               </Kbd>
-              to open
+              {t('search.toOpen')}
             </span>
           </span>
         </div>
@@ -123,6 +127,7 @@ type SearchTriggerProps = {
 
 export function SearchTrigger({ className, variant = 'field' }: SearchTriggerProps) {
   const { open } = useGlobalSearch();
+  const t = useTranslations('site');
 
   if (variant === 'icon') {
     return (
@@ -131,7 +136,7 @@ export function SearchTrigger({ className, variant = 'field' }: SearchTriggerPro
         variant="ghost"
         size="icon-sm"
         onClick={open}
-        aria-label="Search documentation"
+        aria-label={t('ariaLabel.search')}
         className={className}
       >
         <SearchIcon />
@@ -148,7 +153,7 @@ export function SearchTrigger({ className, variant = 'field' }: SearchTriggerPro
     >
       <span className="flex min-w-0 items-center gap-2">
         <SearchIcon />
-        <span className="truncate">Search documentation...</span>
+        <span className="truncate">{t('search.placeholder')}</span>
       </span>
       <Kbd className="hidden lg:inline-flex">⌘K</Kbd>
     </Button>

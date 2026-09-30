@@ -1,0 +1,267 @@
+{
+  "site": {
+    "ariaLabel": {
+      "home": "Abbes UI",
+      "nav": "Documentation",
+      "search": "Search documentation",
+      "theme": "Theme",
+      "language": "Language",
+      "menu": "Navigation",
+      "components": "Components",
+      "browseComponents": "Browse components",
+      "browseTheme": "Browse theme"
+    },
+    "search": {
+      "title": "Search documentation",
+      "description": "Search the Abbes UI documentation by page title or description.",
+      "placeholder": "Search documentation...",
+      "empty": "No results found for \"{query}\".",
+      "indexed": "{count, plural, one {# page indexed} other {# pages indexed}}",
+      "toNavigate": "to navigate",
+      "toOpen": "to open"
+    },
+    "theme": {
+      "label": "Theme",
+      "items": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    },
+    "language": {
+      "label": "Language",
+      "items": {
+        "en": "English",
+        "zh": "简体中文"
+      },
+      "short": {
+        "en": "EN",
+        "zh": "ZH"
+      }
+    },
+    "docs": {
+      "title": "React Docs",
+      "children": {
+        "theme": {
+          "title": "Theme",
+          "description": "Design tokens, theme provider and color modes"
+        },
+        "components": {
+          "title": "Components",
+          "description": "Component APIs, props and examples"
+        }
+      }
+    }
+  },
+  "docs": {
+    "components": {
+      "title": "Components",
+      "children": {
+        "overview": {
+          "title": "Overview",
+          "children": {
+            "quickStart": {
+              "title": "Quick start",
+              "description": "Install, load tokens and render your first component."
+            }
+          }
+        },
+        "general": {
+          "title": "General",
+          "children": {
+            "button": {
+              "title": "Button",
+              "description": "Actions and form submits with token-driven variants."
+            },
+            "tag": {
+              "title": "Tag",
+              "description": "Compact labels for status, metadata and categories."
+            }
+          }
+        }
+      },
+      "pages": {
+        "button": {
+          "badge": "React",
+          "title": "Button",
+          "description": "Actions and form submits with token-driven variants. Every button ships with typed props and a cva recipe so you can restyle without forking.",
+          "browse": "Browse variants",
+          "cards": {
+            "variants": {
+              "title": "Variants",
+              "description": "Default, outline, secondary and destructive styles driven by theme tokens."
+            },
+            "sizes": {
+              "title": "Sizes",
+              "description": "From xs to lg, each size stays aligned to the spacing scale."
+            }
+          }
+        },
+        "tag": {
+          "badge": "React",
+          "title": "Tag",
+          "description": "Compact labels for status, metadata and categories. Tags read their colors from the Abbes UI theme tokens.",
+          "browse": "Browse variants",
+          "cards": {
+            "status": {
+              "title": "Status",
+              "description": "Use tags to surface state next to a record or an action."
+            },
+            "metadata": {
+              "title": "Metadata",
+              "description": "Group related records with short, low-emphasis labels."
+            }
+          }
+        },
+        "quickStart": {
+          "badge": "Overview",
+          "title": "Quick start",
+          "description": "Install the packages, load the token stylesheet and render your first component. Four steps, no configuration files.",
+          "steps": {
+            "install": {
+              "title": "Install the packages",
+              "description": "Components ship separately from their tokens, so both packages are required."
+            },
+            "stylesheet": {
+              "title": "Load the token stylesheet",
+              "description": "The generated CSS defines every design token as a custom property on :root."
+            },
+            "provider": {
+              "title": "Add the theme provider",
+              "description": "Start from the default token contract and override only the values you care about."
+            },
+            "render": {
+              "title": "Render a component",
+              "description": "Every component exposes typed props for size, color, shape and variant."
+            }
+          },
+          "nextSteps": {
+            "title": "Next steps",
+            "description": "Dive into the component APIs and the token pipeline."
+          },
+          "links": {
+            "button": {
+              "title": "Button",
+              "description": "Props, variants and slots for actions and form submits."
+            },
+            "tag": {
+              "title": "Tag",
+              "description": "Compact labels for status, metadata and categories."
+            }
+          }
+        }
+      }
+    },
+    "theme": {
+      "title": "Theme",
+      "children": {
+        "overview": {
+          "title": "Overview",
+          "children": {
+            "introduction": {
+              "title": "Introduction",
+              "description": "How tokens, themes and the theme provider fit together."
+            },
+            "designKit": {
+              "title": "Design kit",
+              "description": "The shared foundations, assets and rules behind every component."
+            }
+          }
+        },
+        "foundations": {
+          "title": "Foundations",
+          "children": {
+            "color": {
+              "title": "Color",
+              "description": "Color roles, palettes and the CSS variable mapping."
+            },
+            "space": {
+              "title": "Space",
+              "description": "The spacing scale, radius and sizing utilities."
+            },
+            "typography": {
+              "title": "Typography",
+              "description": "Font families, type scale and heading styles."
+            }
+          }
+        }
+      },
+      "pages": {
+        "introduction": {
+          "badge": "Theme",
+          "title": "Introduction",
+          "description": "Tokens are the single source of truth for color, typography and spacing. The theme provider maps them onto CSS variables so every component reads from the same source.",
+          "whatsInside": "What's inside",
+          "steps": {
+            "define": {
+              "title": "Define your tokens",
+              "description": "Author color, space and typography tokens once. Everything downstream reads from them."
+            },
+            "wrap": {
+              "title": "Wrap your app in ThemeProvider",
+              "description": "The provider maps tokens onto CSS variables and owns the active color mode."
+            },
+            "compose": {
+              "title": "Compose components",
+              "description": "Primitives read the variables, so restyling never requires forking a component."
+            }
+          }
+        }
+      },
+      "comingSoon": {
+        "title": "Coming soon",
+        "description": "This page has not been written yet."
+      }
+    }
+  },
+  "home": {
+    "badge": "{name} documentation",
+    "title": "Build beautiful interfaces with <name></name>",
+    "getStarted": "Get Started",
+    "viewOnGitHub": "View on GitHub",
+    "starOnGitHub": "Star on GitHub",
+    "explore": {
+      "title": "Explore the docs",
+      "description": "Learn how tokens, the theme provider and the component APIs fit together.",
+      "browse": "Browse components"
+    },
+    "features": {
+      "title": "Why {name}",
+      "description": "A focused toolchain for teams that want design consistency without a bespoke component per screen.",
+      "items": {
+        "theming": {
+          "title": "Token-driven theming",
+          "description": "Design tokens drive color, spacing and typography. Switch themes at runtime without rebuilding styles or forking components."
+        },
+        "composable": {
+          "title": "Composable by default",
+          "description": "Primitives are designed to be assembled, not configured. Every recipe is overridable through CSS variables instead of props."
+        },
+        "typed": {
+          "title": "Type-safe APIs",
+          "description": "Strict TypeScript props and generated style recipes make every integration predictable and refactor-friendly."
+        },
+        "accessible": {
+          "title": "Accessible foundations",
+          "description": "Built on battle-tested Base UI primitives with focus management, keyboard support and ARIA semantics handled for you."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to start building?",
+      "description": "Install the package, wrap your app in the theme provider and compose your first component in minutes."
+    }
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "We could not find that page. It may have been moved or never existed.",
+    "backHome": "Back to home",
+    "readDocs": "Read the docs",
+    "stillStuck": "Still stuck? Head back to {name} or press the search shortcut to search."
+  },
+  "metadata": {
+    "defaultTitle": "{name} Documentation",
+    "titleTemplate": "%s | {name}"
+  }
+}

@@ -1,21 +1,21 @@
 'use client';
 
-import { cn } from 'cn';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { ChevronDownIcon, LayoutGridIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
+import { cn } from 'cn';
+import { useLocalNav } from '@/hooks/useLocalNav';
+import { Link, usePathname } from '@/lib/i18n/navigation';
+import { getNavItems, isNavItemActive } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuHeading,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { componentsNav } from '@/lib/docs-nav';
-import { getNavItems, isNavItemActive } from '@/lib/utils';
 
 type ComponentsMobileNavProps = {
   className?: string;
@@ -23,8 +23,9 @@ type ComponentsMobileNavProps = {
 
 export function ComponentsMobileNav({ className }: ComponentsMobileNavProps) {
   const pathname = usePathname();
-
-  const activeItem = getNavItems(componentsNav).find((item) => isNavItemActive(pathname, item.href));
+  const t = useTranslations('site');
+  const nav = useLocalNav('docs.components', { withDescription: false });
+  const activeItem = getNavItems(nav).find((item) => item.href && isNavItemActive(pathname, item.href));
 
   return (
     <DropdownMenu>
@@ -33,30 +34,32 @@ export function ComponentsMobileNav({ className }: ComponentsMobileNavProps) {
           <Button
             variant="outline"
             className={cn('w-full justify-between', className)}
-            aria-label="Browse components"
+            aria-label={t('ariaLabel.browseComponents')}
           />
         }
       >
         <span className="flex items-center gap-2">
           <LayoutGridIcon aria-hidden className="size-4 text-muted-foreground" />
-          {activeItem?.title ?? 'Browse components'}
+          {activeItem?.title ?? t('ariaLabel.browseComponents')}
         </span>
         <ChevronDownIcon aria-hidden className="size-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-(--anchor-width)">
-        {componentsNav.map((section) => (
-          <DropdownMenuGroup key={section.title}>
-            <DropdownMenuLabel>{section.title}</DropdownMenuLabel>
-            {section.items.map((item) => (
-              <DropdownMenuItem
-                key={item.href}
-                render={<Link href={item.href} />}
-                aria-current={isNavItemActive(pathname, item.href) ? 'page' : undefined}
-                className="aria-[current=page]:bg-accent aria-[current=page]:text-accent-foreground"
-              >
-                {item.title}
-              </DropdownMenuItem>
-            ))}
+        {nav.map((section) => (
+          <DropdownMenuGroup key={section.key}>
+            <DropdownMenuHeading>{section.title}</DropdownMenuHeading>
+            {(section.items ?? []).map((item) =>
+              item.href ? (
+                <DropdownMenuItem
+                  key={item.key}
+                  render={<Link href={item.href} />}
+                  aria-current={isNavItemActive(pathname, item.href) ? 'page' : undefined}
+                  className="aria-[current=page]:bg-accent aria-[current=page]:text-accent-foreground"
+                >
+                  {item.title}
+                </DropdownMenuItem>
+              ) : null,
+            )}
           </DropdownMenuGroup>
         ))}
       </DropdownMenuContent>
